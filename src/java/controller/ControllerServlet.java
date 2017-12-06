@@ -10,7 +10,7 @@ package controller;
 
 import cart.ShoppingCart;
 import entity.Category;
-import entity.Product;
+import entity.Inventory;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Locale;
@@ -77,7 +77,7 @@ public class ControllerServlet extends HttpServlet {
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
         Category selectedCategory;
-        Collection<Product> categoryProducts;
+        Collection<Inventory> categoryProducts;
 
 
         // if category page is requested
@@ -201,7 +201,7 @@ public class ControllerServlet extends HttpServlet {
 
             if (!productId.isEmpty()) {
 
-                Product product = productFacade.find(Integer.parseInt(productId));
+                Inventory product = productFacade.find(Integer.parseInt(productId));
                 cart.addItem(product);
             }
 
@@ -219,7 +219,7 @@ public class ControllerServlet extends HttpServlet {
 
             if (!invalidEntry) {
 
-                Product product = productFacade.find(Integer.parseInt(productId));
+                Inventory product = productFacade.find(Integer.parseInt(productId));
                 cart.update(product, quantity);
             }
 
@@ -236,12 +236,11 @@ public class ControllerServlet extends HttpServlet {
                 String email = request.getParameter("email");
                 String phone = request.getParameter("phone");
                 String address = request.getParameter("address");
-                String cityRegion = request.getParameter("cityRegion");
                 String ccNumber = request.getParameter("creditcard");
 
                 // validate user data
                 boolean validationErrorFlag = false;
-                validationErrorFlag = validator.validateForm(name, email, phone, address, cityRegion, ccNumber, request);
+                validationErrorFlag = validator.validateForm(name, email, phone, address, ccNumber, request);
 
                 // if validation error found, return user to checkout
                 if (validationErrorFlag == true) {
@@ -251,7 +250,7 @@ public class ControllerServlet extends HttpServlet {
                     // otherwise, save order to database
                 } else {
 
-                    int orderId = orderManager.placeOrder(name, email, phone, address, cityRegion, ccNumber, cart);
+                    int orderId = orderManager.placeOrder(name, email, phone, address, ccNumber, cart);
 
                     // if order processed successfully send user to confirmation page
                     if (orderId != 0) {

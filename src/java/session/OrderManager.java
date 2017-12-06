@@ -47,10 +47,10 @@ public class OrderManager {
     private OrderedProductFacade orderedProductFacade;
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public int placeOrder(String name, String email, String phone, String address, String cityRegion, String ccNumber, ShoppingCart cart) {
+    public int placeOrder(String name, String email, String phone, String address, String ccNumber, ShoppingCart cart) {
 
         try {
-            Customer customer = addCustomer(name, email, phone, address, cityRegion, ccNumber);
+            Customer customer = addCustomer(name, email, phone, address, ccNumber);
             CustomerOrder order = addOrder(customer, cart);
             addOrderedItems(order, cart);
             return order.getId();
@@ -60,14 +60,13 @@ public class OrderManager {
         }
     }
 
-    private Customer addCustomer(String name, String email, String phone, String address, String cityRegion, String ccNumber) {
+    private Customer addCustomer(String name, String email, String phone, String address, String ccNumber) {
 
         Customer customer = new Customer();
         customer.setName(name);
         customer.setEmail(email);
         customer.setPhone(phone);
         customer.setAddress(address);
-        customer.setCityRegion(cityRegion);
         customer.setCcNumber(ccNumber);
 
         em.persist(customer);
@@ -130,11 +129,11 @@ public class OrderManager {
         List<OrderedProduct> orderedProducts = orderedProductFacade.findByOrderId(orderId);
 
         // get product details for ordered items
-        List<Product> products = new ArrayList<Product>();
+        List<Inventory> products = new ArrayList<Inventory>();
 
         for (OrderedProduct op : orderedProducts) {
 
-            Product p = (Product) productFacade.find(op.getOrderedProductPK().getProductId());
+            Inventory p = (Inventory) productFacade.find(op.getOrderedProductPK().getProductId());
             products.add(p);
         }
 

@@ -39,7 +39,7 @@ public class OrderedProduct implements Serializable {
     private short quantity;
     @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Product product;
+    private Inventory product;
     @JoinColumn(name = "customer_order_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private CustomerOrder customerOrder;
@@ -76,11 +76,11 @@ public class OrderedProduct implements Serializable {
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
+    public Inventory getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Inventory product) {
         this.product = product;
     }
 

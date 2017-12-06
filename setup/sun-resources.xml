@@ -14,7 +14,7 @@
 
 <resources>
   <jdbc-resource enabled="true"
-                 jndi-name="jdbc/affablebean"
+                 jndi-name="jdbc/beanscommerce"
                  object-type="user"
                  pool-name="beanCommercePool">
   </jdbc-resource>
@@ -46,8 +46,8 @@
                         validate-atmost-once-period-in-seconds="0"
                         wrap-jdbc-objects="false">
 
-    <description>Connects to the affablebean database</description>
-    <property name="URL" value="jdbc:mysql://localhost:3306/affablebean"/>
+    <description>Connects to the beanCommerce database</description>
+    <property name="URL" value="jdbc:mysql://localhost:3306/beanscommerce"/>
     <property name="User" value="root"/>
     <property name="Password" value="nbuser"/>
   </jdbc-connection-pool>

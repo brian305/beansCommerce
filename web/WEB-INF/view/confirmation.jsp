@@ -98,8 +98,6 @@
                     <br>
                     ${customer.address}
                     <br>
-                    <fmt:message key="prague"/> ${customer.cityRegion}
-                    <br>
                     <hr>
                     <strong><fmt:message key="email"/>:</strong> ${customer.email}
                     <br>

@@ -49,7 +49,6 @@ public class Validator {
                                 String email,
                                 String phone,
                                 String address,
-                                String cityRegion,
                                 String ccNumber,
                                 HttpServletRequest request) {
 
@@ -58,7 +57,6 @@ public class Validator {
         boolean emailError;
         boolean phoneError;
         boolean addressError;
-        boolean cityRegionError;
         boolean ccNumberError;
 
         if (name == null
@@ -89,16 +87,9 @@ public class Validator {
             addressError = true;
             request.setAttribute("addressError", addressError);
         }
-        if (cityRegion == null
-                || cityRegion.equals("")
-                || cityRegion.length() > 2) {
-            errorFlag = true;
-            cityRegionError = true;
-            request.setAttribute("cityRegionError", cityRegionError);
-        }
         if (ccNumber == null
                 || ccNumber.equals("")
-                || ccNumber.length() > 19) {
+                || ccNumber.length() > 20) {
             errorFlag = true;
             ccNumberError = true;
             request.setAttribute("ccNumberError", ccNumberError);

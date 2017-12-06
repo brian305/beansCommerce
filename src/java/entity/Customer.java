@@ -35,7 +35,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
     @NamedQuery(name = "Customer.findByPhone", query = "SELECT c FROM Customer c WHERE c.phone = :phone"),
     @NamedQuery(name = "Customer.findByAddress", query = "SELECT c FROM Customer c WHERE c.address = :address"),
-    @NamedQuery(name = "Customer.findByCityRegion", query = "SELECT c FROM Customer c WHERE c.cityRegion = :cityRegion"),
     @NamedQuery(name = "Customer.findByCcNumber", query = "SELECT c FROM Customer c WHERE c.ccNumber = :ccNumber")})
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -57,9 +56,6 @@ public class Customer implements Serializable {
     @Column(name = "address")
     private String address;
     @Basic(optional = false)
-    @Column(name = "city_region")
-    private String cityRegion;
-    @Basic(optional = false)
     @Column(name = "cc_number")
     private String ccNumber;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
@@ -72,13 +68,12 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public Customer(Integer id, String name, String email, String phone, String address, String cityRegion, String ccNumber) {
+    public Customer(Integer id, String name, String email, String phone, String address, String ccNumber) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.cityRegion = cityRegion;
         this.ccNumber = ccNumber;
     }
 
@@ -121,15 +116,7 @@ public class Customer implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    public String getCityRegion() {
-        return cityRegion;
-    }
-
-    public void setCityRegion(String cityRegion) {
-        this.cityRegion = cityRegion;
-    }
-
+    
     public String getCcNumber() {
         return ccNumber;
     }

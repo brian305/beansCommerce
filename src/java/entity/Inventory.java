@@ -33,14 +33,14 @@ import javax.persistence.TemporalType;
  * @author tgiunipero
  */
 @Entity
-@Table(name = "product")
+@Table(name = "inventory")
 @NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-    @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id"),
-    @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
-    @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
-    @NamedQuery(name = "Product.findByLastUpdate", query = "SELECT p FROM Product p WHERE p.lastUpdate = :lastUpdate")})
-public class Product implements Serializable {
+    @NamedQuery(name = "Inventory.findAll", query = "SELECT p FROM Inventory p"),
+    @NamedQuery(name = "Inventory.findById", query = "SELECT p FROM Inventory p WHERE p.id = :id"),
+    @NamedQuery(name = "Inventory.findByName", query = "SELECT p FROM Inventory p WHERE p.name = :name"),
+    @NamedQuery(name = "Inventory.findByPrice", query = "SELECT p FROM Inventory p WHERE p.price = :price"),
+    @NamedQuery(name = "Inventory.findByLastUpdate", query = "SELECT p FROM Inventory p WHERE p.lastUpdate = :lastUpdate")})
+public class Inventory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,19 +58,22 @@ public class Product implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @Basic(optional = false)
+    @Column(name = "quantity")
+    private int quantity;
     @ManyToOne(optional = false)
     private Category category;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<OrderedProduct> orderedProductCollection;
 
-    public Product() {
+    public Inventory() {
     }
 
-    public Product(Integer id) {
+    public Inventory(Integer id) {
         this.id = id;
     }
 
-    public Product(Integer id, String name, BigDecimal price, Date lastUpdate) {
+    public Inventory(Integer id, String name, BigDecimal price, Date lastUpdate) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -135,10 +138,10 @@ public class Product implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Product)) {
+        if (!(object instanceof Inventory)) {
             return false;
         }
-        Product other = (Product) object;
+        Inventory other = (Inventory) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

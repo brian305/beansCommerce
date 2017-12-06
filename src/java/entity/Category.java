@@ -43,7 +43,7 @@ public class Category implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-    private Collection<Product> productCollection;
+    private Collection<Inventory> productCollection;
 
     public Category() {
     }
@@ -73,11 +73,11 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public Collection<Product> getProductCollection() {
+    public Collection<Inventory> getProductCollection() {
         return productCollection;
     }
 
-    public void setProductCollection(Collection<Product> productCollection) {
+    public void setProductCollection(Collection<Inventory> productCollection) {
         this.productCollection = productCollection;
     }
 

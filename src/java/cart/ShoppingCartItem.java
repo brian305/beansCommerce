@@ -8,7 +8,7 @@
 
 package cart;
 
-import entity.Product;
+import entity.Inventory;
 
 /**
  *
@@ -16,15 +16,15 @@ import entity.Product;
  */
 public class ShoppingCartItem {
 
-    Product product;
+    Inventory product;
     short quantity;
 
-    public ShoppingCartItem(Product product) {
+    public ShoppingCartItem(Inventory product) {
         this.product = product;
         quantity = 1;
     }
 
-    public Product getProduct() {
+    public Inventory getProduct() {
         return product;
     }
 

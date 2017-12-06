@@ -8,7 +8,7 @@
 
 package cart;
 
-import entity.Product;
+import entity.Inventory;
 import java.util.*;
 
 /**
@@ -33,10 +33,10 @@ public class ShoppingCart {
      * already exists in shopping cart list, the quantity of that item is
      * incremented.
      *
-     * @param product the <code>Product</code> that defines the type of shopping cart item
+     * @param product the <code>Inventory</code> that defines the type of shopping cart item
      * @see ShoppingCartItem
      */
-    public synchronized void addItem(Product product) {
+    public synchronized void addItem(Inventory product) {
 
         boolean newItem = true;
 
@@ -61,11 +61,11 @@ public class ShoppingCart {
      * is the given quantity, the <code>ShoppingCartItem</code> is removed
      * from the <code>ShoppingCart</code>'s <code>items</code> list.
      *
-     * @param product the <code>Product</code> that defines the type of shopping cart item
+     * @param product the <code>Inventory</code> that defines the type of shopping cart item
      * @param quantity the number which the <code>ShoppingCartItem</code> is updated to
      * @see ShoppingCartItem
      */
-    public synchronized void update(Product product, String quantity) {
+    public synchronized void update(Inventory product, String quantity) {
 
         short qty = -1;
 
@@ -141,7 +141,7 @@ public class ShoppingCart {
 
         for (ShoppingCartItem scItem : items) {
 
-            Product product = (Product) scItem.getProduct();
+            Inventory product = (Inventory) scItem.getProduct();
             amount += (scItem.getQuantity() * product.getPrice().doubleValue());
         }
 

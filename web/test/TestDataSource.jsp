@@ -22,10 +22,10 @@
     </head>
 
     <body>
-        <h2>data from affablebean.category:</h2>
+        <h2>data from beanscommerce.category:</h2>
 
         <%-- Use Database > DB Report in the Palette --%>
-        <sql:query var="result" dataSource="jdbc/affablebean">
+        <sql:query var="result" dataSource="jdbc/beanscommerce">
             SELECT * FROM category
         </sql:query>
 

@@ -39,7 +39,7 @@ import session.OrderManager;
                            "/admin/logout"})
 @ServletSecurity(
     @HttpConstraint(transportGuarantee = TransportGuarantee.CONFIDENTIAL,
-                    rolesAllowed = {"affableBeanAdmin"})
+                    rolesAllowed = {"beansCommerceAdmin"})
 )
 public class AdminServlet extends HttpServlet {
 

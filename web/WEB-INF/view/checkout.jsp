@@ -92,9 +92,6 @@
                       <c:if test="${!empty addressError}">
                         <br><span class="indent"><fmt:message key="addressError"/></span>
                       </c:if>
-                      <c:if test="${!empty cityRegionError}">
-                        <br><span class="indent"><fmt:message key="cityRegionError"/></span>
-                      </c:if>
                       <c:if test="${!empty ccNumberError}">
                         <br><span class="indent"><fmt:message key="ccNumberError"/></span>
                       </c:if>
